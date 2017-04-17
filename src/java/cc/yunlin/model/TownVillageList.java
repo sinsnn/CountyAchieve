@@ -5,10 +5,47 @@
  */
 package cc.yunlin.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sinsnn
  */
-public class TownVillageList {
-    
+public class TownVillageList implements Serializable {
+
+    private int num;
+    private String townName;
+    private String villageName;
+
+    public TownVillageList() {
+    }
+
+    public TownVillageList(String townName, String villageName) {
+        this.townName = townName;
+        this.villageName = villageName;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getTownName() {
+        return townName;
+    }
+
+    public void setTownName(String townName) {
+        this.townName = townName;
+    }
+
+    public String getVillageName() {
+        return villageName;
+    }
+
+    public void setVillageName(String villageName) {
+        this.villageName = villageName;
+    }
 }
