@@ -5,6 +5,8 @@
  */
 package cc.yunlin.web;
 
+import cc.yunlin.model.TownVillageListDAOImpl;
+import cc.yunlin.model.TownVillageService;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -23,13 +25,12 @@ public class CountyAchieveListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try {
             Context initContext = new InitialContext();
-            Context envContext = (Context)
-                           initContext.lookup("java:/comp/env");
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
             DataSource dataSource = (DataSource) envContext.lookup("jdbc/CountyAchieve");
             ServletContext context = sce.getServletContext();
-//下面需新增 model 的壹些服務類別
-            
-
+//下面需新增 model 的一些服務類別
+            context.setAttribute("townVillageService", new TownVillageService(
+                    new TownVillageListDAOImpl(dataSource)));
         } catch (NamingException ex) {
             throw new RuntimeException(ex);
         }
