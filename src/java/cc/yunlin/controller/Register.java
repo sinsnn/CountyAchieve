@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Register", urlPatterns = {"/register.do"})
 public class Register extends HttpServlet {
-    private final String USERS = "/Users/sinsnn/desktop/users";
+//    private final String USERS = "/Users/sinsnn/desktop/users";
+    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
     private final String SUCCESS_VIEW = "success.view";
     private final String ERROR_VIEW = "error.view";
 

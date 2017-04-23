@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Login", urlPatterns = {"/login.do"})
 public class Login extends HttpServlet {
 
-    private final String USERS = "/Users/sinsnn/desktop/users";
+//    private final String USERS = "/Users/sinsnn/desktop/users";
+    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
     private final String SUCCESS_VIEW = "member.view";
     private final String ERROR_VIEW = "index.html";
 
