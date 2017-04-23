@@ -6,13 +6,40 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>成果</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Hello World</div>
-        <h1> 同步測試 </h1>
-        <h2>第二次同步測試</h2>
+        <div>
+            <a href='register.html'>註冊</a>
+            <p></p>
+            <form action="login.do" method="POST">
+                <table border="1" >
+                    <thead>
+                        <tr>
+                            <th colspan="2">登入</th>                    
+                        </tr> 
+                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>名稱：</td>
+                            <td><input type="text" name="username"  /></td>
+                        </tr>
+                        <tr>
+                            <td>密碼：</td>
+                            <td><input type="password" name="密碼："  /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" value="登入" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>                
+            </form>
+	
+        </div>
     </body>
 </html>
