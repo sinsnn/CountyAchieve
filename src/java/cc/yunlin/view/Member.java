@@ -20,6 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Member", urlPatterns = {"/member.view"})
 public class Member extends HttpServlet {
 
+    //    private final String USERS = "/Users/sinsnn/desktop/users";
+    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
+    private final String LOGIN_VIEW = "index.html";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,6 +35,13 @@ public class Member extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getSession().getAttribute("login") == null) {
+            response.sendRedirect(LOGIN_VIEW);
+            return;
+        }
+
+        String username = (String) request.getSession().getAttribute("login");
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -41,7 +52,8 @@ public class Member extends HttpServlet {
             out.println("  <title>會員登入成功</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>會員 " + request.getParameter("username") + " 你好</h1>");
+            out.println("<h1>會員 " + username + " 你好</h1>");
+            out.println("<a href='logout.do?username=" + username + "'>登出 " + username + "</a>");
             out.println("</body>");
             out.println("</html>");
         }
