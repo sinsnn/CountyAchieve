@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Member", urlPatterns = {"/member.view"})
 public class Member extends HttpServlet {
 
-    //    private final String USERS = "/Users/sinsnn/desktop/users";
-    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
+    private final String USERS = "/Users/sinsnn/desktop/users";
+//    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
     private final String LOGIN_VIEW = "index.html";
 
     /**
