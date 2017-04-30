@@ -35,11 +35,7 @@ public class Member extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getSession().getAttribute("login") == null) {
-            response.sendRedirect(LOGIN_VIEW);
-            return;
-        }
-
+      
         String username = (String) request.getSession().getAttribute("login");
 
         response.setContentType("text/html;charset=UTF-8");

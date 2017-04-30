@@ -5,12 +5,10 @@
  */
 package cc.yunlin.controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import cc.yunlin.model.UserService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +18,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author sinsnn
  */
-@WebServlet(name = "Login", urlPatterns = {"/login.do"})
+@WebServlet(
+        name = "Login",
+        urlPatterns = {"/login.do"},
+        initParams = {
+            @WebInitParam(name = "SUCCESS_VIEW", value = "member.view")
+            ,
+            @WebInitParam(name = "ERROR_VIEW", value = "index.html")
+        })
 public class Login extends HttpServlet {
 
-    private final String USERS = "/Users/sinsnn/desktop/users";
-//    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
-    private final String SUCCESS_VIEW = "member.view";
-    private final String ERROR_VIEW = "index.html";
+    private String SUCCESS_VIEW;
+    private String ERROR_VIEW;
+
+    @Override
+    public void init() throws ServletException {
+        SUCCESS_VIEW = getServletConfig().getInitParameter("SUCCESS_VIEW");
+        ERROR_VIEW = getServletConfig().getInitParameter("ERROR_VIEW");
+
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,29 +52,16 @@ public class Login extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String page = ERROR_VIEW;
-        if (checkLogin(username, password)) {
+        
+        UserService userService = (UserService) getServletContext().getAttribute("userService");
+        if (userService.checkLogin(username, password)) {
             request.getSession().setAttribute("login", username);
-            page =  SUCCESS_VIEW;
+            page = SUCCESS_VIEW;
         }
         response.sendRedirect(page);
     }
 
-    private boolean checkLogin(String username, String password)
-            throws IOException {
-        if (username != null && password != null) {
-            for (String file : new File(USERS).list()) {
-                if (file.equals(username)) {
-                    BufferedReader reader = new BufferedReader(
-                            new FileReader(USERS + "/" + file + "/profile"));
-                    String passwd = reader.readLine().split("\t")[1];
-                    if (passwd.equals(password)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -95,14 +92,5 @@ public class Login extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }
