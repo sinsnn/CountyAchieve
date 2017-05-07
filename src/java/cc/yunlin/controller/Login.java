@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
         name = "Login",
         urlPatterns = {"/login.do"},
         initParams = {
-            @WebInitParam(name = "SUCCESS_VIEW", value = "member.view")
+            @WebInitParam(name = "SUCCESS_VIEW", value = "member.jsp")
             ,
             @WebInitParam(name = "ERROR_VIEW", value = "index.html")
         })
