@@ -1,16 +1,35 @@
+<%-- 
+    Document   : register
+    Created on : 2017/5/7, 下午 06:16:26
+    Author     : sinsnn
+--%>
+
+<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>註冊</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <%
+            List<String> errors = (List<String>) request.getAttribute("errors");
+            if (errors != null) {
+        %>
+        <h1>新增會員失敗</h1>
+        <ul style='color: rgb(255, 0, 0);'>
+            <%
+                for (String error : errors) {
+            %>
+            <li><%= error%></li>
+                <%
+                    }
+                %>
+        </ul><br>
+        <%
+            }
+        %>
         <div>
             <h1>會員註冊</h1>
             <form action="register.do" method="POST">
@@ -19,11 +38,11 @@ and open the template in the editor.
                     <tbody>
                         <tr>
                             <td>郵件位址：</td>
-                            <td><input type="text" name="email" value="" size="25" maxlength="100"/></td>
+                            <td><input type="text" name="email" value="${param.email}" size="25" maxlength="100"/></td>
                         </tr>
                         <tr>
                             <td>名稱（最大16字元）</td>
-                            <td><input  type="text" name="username" value="" size="25" maxlength="16"/></td>
+                            <td><input  type="text" name="username" value="${param.username}" size="25" maxlength="16"/></td>
                         </tr>
                         <tr>
                             <td>密碼（6到16字元）：</td>

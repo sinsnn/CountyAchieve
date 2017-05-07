@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
         initParams = {
             @WebInitParam(name = "SUCCESS_VIEW", value = "member.jsp")
             ,
-            @WebInitParam(name = "ERROR_VIEW", value = "index.html")
+            @WebInitParam(name = "ERROR_VIEW", value = "index.jsp")
         })
 public class Login extends HttpServlet {
 
@@ -58,7 +58,11 @@ public class Login extends HttpServlet {
             request.getSession().setAttribute("login", username);
             page = SUCCESS_VIEW;
         }
-        response.sendRedirect(page);
+        else {
+            request.setAttribute("error", "名稱或密碼錯誤");
+            page = ERROR_VIEW;
+        }
+        request.getRequestDispatcher(page).forward(request, response);
     }
 
 
