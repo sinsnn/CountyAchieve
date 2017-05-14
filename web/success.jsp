@@ -12,6 +12,6 @@
     </head>
     <body>
         <h1>會員${param.username}註冊成功</h1>
-        <a href="index.html">回首頁登入</a>
+        <a href="index.jsp">回首頁登入</a>
     </body>
 </html>
