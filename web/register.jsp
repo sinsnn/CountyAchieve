@@ -7,29 +7,24 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>註冊</title>
     </head>
     <body>
-        <%
-            List<String> errors = (List<String>) request.getAttribute("errors");
-            if (errors != null) {
-        %>
-        <h1>新增會員失敗</h1>
-        <ul style='color: rgb(255, 0, 0);'>
-            <%
-                for (String error : errors) {
-            %>
-            <li><%= error%></li>
-                <%
-                    }
-                %>
-        </ul><br>
-        <%
-            }
-        %>
+        <c:if test="${requestScope.errors != null}">
+            <h1>新增會員失敗</h1>
+            <ul>
+                <c:forEach var="error" items="${requestScope.errors}">
+                    <li>
+                        ${error}
+                    </li>
+                </c:forEach>
+            </ul>
+
+        </c:if>
         <div>
             <h1>會員註冊</h1>
             <form action="register.do" method="POST">
