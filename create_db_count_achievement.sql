@@ -51,7 +51,7 @@ create table achievement_town (
     plan_year year not null ,
     town_no int not null ,
     primary key(num, work_unit, plan_year, town_no),
-    foreign key (num, work_unit, plan_year) references achievement (num, work_unit, plan_uear),
+    foreign key (num, work_unit, plan_year) references achievement (num, work_unit, plan_year),
     foreign key (town_no) references town(num)
     ) 
       char set utf8
@@ -63,7 +63,7 @@ create table achievement_village (
     plan_year year not null ,
     village_no int not null ,
     primary key(num, work_unit, plan_year, village_no),
-    foreign key (num, work_unit, plan_year) references achievement (num, work_unit, plan_name),
+    foreign key (num, work_unit, plan_year) references achievement (num, work_unit, plan_year),
     foreign key(village_no) references village(num)
 ) 
 	char set utf8

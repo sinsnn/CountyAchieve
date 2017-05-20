@@ -18,8 +18,8 @@ import java.io.IOException;
  */
 public class UserService {
 
-    private final String USERS = "/Users/sinsnn/desktop/users";
-//    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
+//    private final String USERS = "/Users/sinsnn/desktop/users";
+    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
 
     public boolean isInvalidUsername(String username) {
         for (String file : new File(USERS).list()) {
