@@ -5,9 +5,7 @@
  */
 package cc.yunlin.web;
 
-import cc.yunlin.model.TownVillageListDAOImpl;
-import cc.yunlin.model.TownVillageService;
-import cc.yunlin.model.UserService;
+import cc.yunlin.model.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -32,7 +30,8 @@ public class CountyAchieveListener implements ServletContextListener {
 //下面需新增 model 的一些服務類別
             context.setAttribute("townVillageService", new TownVillageService(
                     new TownVillageListDAOImpl(dataSource)));
-            context.setAttribute("userService", new UserService());
+            context.setAttribute("userService", new UserService(
+                    new AccountDAOJdbcImpl(dataSource)));
         } catch (NamingException ex) {
             throw new RuntimeException(ex);
         }

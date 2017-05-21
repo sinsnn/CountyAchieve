@@ -5,6 +5,7 @@
  */
 package cc.yunlin.controller;
 
+import cc.yunlin.model.Account;
 import cc.yunlin.model.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,18 +63,22 @@ public class Register extends HttpServlet {
         if (isInvalidEmail(email)) {
             errors.add("未填寫郵件或郵件格式不正確");
         }
-        if (userService.isInvalidUsername(username)) {
-            errors.add("使用者名稱為空或已存在");
-        }
+
         if (isInvalidPassword(password, confirmedPasswd)) {
             errors.add("請確認密碼符合格式並再度確認密碼");
         }
+
+        Account account = new Account(username, password, email);
+        if (userService.isUserExisted(account)) {
+            errors.add("使用者名稱為空或已存在");
+        }
+
         String resultPage = ERROR_VIEW;
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
         } else {
             resultPage = SUCCESS_VIEW;
-            userService.createUserData(email, username, password);
+            userService.add(account);
         }
 
         request.getRequestDispatcher(resultPage).forward(request, response);

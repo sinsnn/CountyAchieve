@@ -5,7 +5,7 @@
  */
 package cc.yunlin.controller;
 
-import cc.yunlin.model.UserService;
+import cc.yunlin.model.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -53,8 +53,12 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         String page = ERROR_VIEW;
         
+        Account account = new Account();
+        account.setName(username);
+        account.setPassword(password);
+        
         UserService userService = (UserService) getServletContext().getAttribute("userService");
-        if (userService.checkLogin(username, password)) {
+        if (userService.isUserExisted(account)) {
             request.getSession().setAttribute("login", username);
             page = SUCCESS_VIEW;
         }
