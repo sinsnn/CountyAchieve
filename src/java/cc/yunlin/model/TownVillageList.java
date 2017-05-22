@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class TownVillageList implements Serializable {
 
-    private int num;
+    private int num; //編號
     private String townName;
     private String villageName;
 

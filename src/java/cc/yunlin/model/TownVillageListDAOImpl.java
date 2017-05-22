@@ -44,7 +44,8 @@ public class TownVillageListDAOImpl implements TownVillageListDAO {
         List<TownVillageList> lists = new ArrayList();
         try (Connection conn = dataSource.getConnection();
                 Statement stmt = conn.createStatement()) {
-            ResultSet result = stmt.executeQuery("SELECT *e FROM town_village_list");
+            ResultSet result;
+            result = stmt.executeQuery("SELECT * FROM town_village_list");
             while (result.next()) {
                 TownVillageList townVillageList = toTownVillageList(result);
                 lists.add(townVillageList);
