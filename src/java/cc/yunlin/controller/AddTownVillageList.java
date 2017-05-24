@@ -118,6 +118,6 @@ public class AddTownVillageList extends HttpServlet {
     }// </editor-fold>
 
     private boolean isInvalidTownVillageName(String name) {
-        return name == null;
+        return name.trim().equals("");
     }
 }
