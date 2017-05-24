@@ -16,6 +16,46 @@
     <body>
         <h1>會員${sessionScope.login}您好</h1>
         <a href='logout.do?username=${sessionScope.login}'>登出${sessionScope.login} </a>
+        <div>
+            <c:if test="${requestScope.errors != null}">
+            <h1>新增鄉鎮村里清單失敗</h1>
+            <ul>
+                <c:forEach var="error" items="${requestScope.errors}">
+                    <li>
+                        ${error}
+                    </li>
+                </c:forEach>
+            </ul>
+
+        </c:if>
+        </div>
+        <div>
+            <form action="addTownVillageList.do" method="POST">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th colspan="2">新增鄉鎮市村里清單</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>鄉鎮市</td>
+                            <td><input type="text" name="townname" value="${param.townname}" /></td>
+                        </tr>
+                        <tr>
+                            <td>村里</td>
+                            <td><input type="text" name="villagename" value="${param.villagename}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" value="新增" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>     
+        </div>
         <table border="1">
             <thead>
                 <tr>
