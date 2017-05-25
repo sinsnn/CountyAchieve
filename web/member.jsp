@@ -69,7 +69,13 @@
                     <tr>
                         <td>${townVillageList.num}</td>
                         <td>${townVillageList.townName}</td>
-                        <td>${townVillageList.villageName}</td>              
+                        <td>${townVillageList.villageName}</td>
+                        <td>
+                            <a href="modifyTownVillageList.do?num=${townVillageList.num}">修改</a>
+                        </td>
+                        <td>
+                            <a href="deleteTownVillageList.do?num=${townVillageList.num}">刪除</a>
+                        </td>
                     </tr> 
                 </c:forEach>
             </tbody>
