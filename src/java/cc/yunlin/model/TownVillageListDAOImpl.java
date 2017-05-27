@@ -70,4 +70,24 @@ public class TownVillageListDAOImpl implements TownVillageListDAO {
         return townVillageList;
     }
 
+    @Override
+    public void modifyTownVillageList(TownVillageList townVillageList) {
+
+    }
+
+    @Override
+    public void deleteTownVillageList(TownVillageList townVillageList) {
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(
+                        "DELETE FROM  town_village_list WHERE num = ?")) {
+
+            stmt.setInt(1, townVillageList.getNum());
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
+
 }

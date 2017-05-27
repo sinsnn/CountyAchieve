@@ -8,8 +8,7 @@ package cc.yunlin.controller;
 import cc.yunlin.model.TownVillageList;
 import cc.yunlin.model.TownVillageService;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import static java.lang.Integer.parseInt;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -22,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author sinsnn
  */
 @WebServlet(
-        name = "AddTownVillageList", 
-        urlPatterns = {"/addTownVillageList.do"},
+        name = "TownVillageListDelete", 
+        urlPatterns = {"/townVillageListDelete.do"},
         initParams = {
             @WebInitParam(name = "SUCCESS_VIEW", value = "message.do")
             ,
             @WebInitParam(name = "ERROR_VIEW", value = "message.do")
         })
-public class AddTownVillageList extends HttpServlet {
+public class TownVillageListDelete extends HttpServlet {
 
     private String SUCCESS_VIEW;
     private String ERROR_VIEW;
@@ -52,28 +51,17 @@ public class AddTownVillageList extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String townName = request.getParameter("townname");
-        String villageName = request.getParameter("villagename");
+        String num = request.getParameter("num");
+        
         TownVillageService townVillageService;
         townVillageService = (TownVillageService) getServletContext().getAttribute("townVillageService");
         
-        List<String> errors = new ArrayList<>();
-        if(isInvalidTownVillageName(townName)){
-            errors.add("鄉鎮市名稱不能為空白");
-        }
-        if(isInvalidTownVillageName(villageName)){
-            errors.add("村里名稱不能為空白");
-        }
         
-        String resultPage = ERROR_VIEW;
-        if (!errors.isEmpty()) {
-            request.setAttribute("errors", errors);
-        } else {
-            resultPage = SUCCESS_VIEW;
-            TownVillageList townVillageList = new TownVillageList(townName, villageName);
-            townVillageService.add(townVillageList);
-        }
-         
+        
+        String resultPage = SUCCESS_VIEW;
+        TownVillageList townVillageList = new TownVillageList();
+        townVillageList.setNum(parseInt(num));
+        townVillageService.delete(townVillageList);
         request.getRequestDispatcher(resultPage).forward(request, response);
         
     }

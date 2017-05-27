@@ -26,5 +26,8 @@ public class TownVillageService {
     public List<TownVillageList> getTownVillageLists() {
         return townVillageListDAO.getTownVillageLists();
     }
-
+    
+    public void delete(TownVillageList townVillageList) {
+        townVillageListDAO.deleteTownVillageList(townVillageList);
+    }
 }

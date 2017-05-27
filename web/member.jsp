@@ -30,7 +30,7 @@
         </c:if>
         </div>
         <div>
-            <form action="addTownVillageList.do" method="POST">
+            <form action="townVillageListAdd.do" method="POST">
                 <table border="1">
                     <thead>
                         <tr>
@@ -71,10 +71,10 @@
                         <td>${townVillageList.townName}</td>
                         <td>${townVillageList.villageName}</td>
                         <td>
-                            <a href="modifyTownVillageList.do?num=${townVillageList.num}">修改</a>
+                            <a href="townVillageListModify.do?num=${townVillageList.num}">修改</a>
                         </td>
                         <td>
-                            <a href="deleteTownVillageList.do?num=${townVillageList.num}">刪除</a>
+                            <a href="townVillageListDelete.do?num=${townVillageList.num}">刪除</a>
                         </td>
                     </tr> 
                 </c:forEach>
