@@ -24,6 +24,12 @@ public class TownVillageList implements Serializable {
         this.townName = townName;
         this.villageName = villageName;
     }
+    
+    public TownVillageList(int num,String townName, String villageName) {
+        this.num = num;
+        this.townName = townName;
+        this.villageName = villageName;
+    }
 
     public int getNum() {
         return num;

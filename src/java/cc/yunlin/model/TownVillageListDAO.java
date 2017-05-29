@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface TownVillageListDAO {
     void addTownVillageList(TownVillageList townVillageList); //新增一筆清單
+    TownVillageList getTownVillageList(int num);
     void modifyTownVillageList(TownVillageList townVillageList); //修改一筆清單
     void deleteTownVillageList(TownVillageList townVillageList); //刪除一筆清單
     List<TownVillageList> getTownVillageLists();  //傳回全部的鄉鎮村里清單

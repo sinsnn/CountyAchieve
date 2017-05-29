@@ -30,4 +30,12 @@ public class TownVillageService {
     public void delete(TownVillageList townVillageList) {
         townVillageListDAO.deleteTownVillageList(townVillageList);
     }
+    
+    public TownVillageList getTownVillageList(int num) {
+        return townVillageListDAO.getTownVillageList(num);
+    }
+    
+    public void modifyTownVillageList(TownVillageList townVillageList) {
+        townVillageListDAO.modifyTownVillageList(townVillageList);
+    }
 }

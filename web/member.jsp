@@ -71,7 +71,7 @@
                         <td>${townVillageList.townName}</td>
                         <td>${townVillageList.villageName}</td>
                         <td>
-                            <a href="townVillageListModify.do?num=${townVillageList.num}">修改</a>
+                            <a href="townVillageListModifyPrep.do?num=${townVillageList.num}">修改</a>
                         </td>
                         <td>
                             <a href="townVillageListDelete.do?num=${townVillageList.num}">刪除</a>

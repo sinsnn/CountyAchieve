@@ -30,8 +30,8 @@ public class TownVillageListDAOImpl implements TownVillageListDAO {
                 PreparedStatement stmt = conn.prepareStatement(
                         "INSERT INTO town_village_list(town_name, village_name) VALUES (?,?)")) {
 
-            stmt.setString(1, townVillageList.getTownName());
-            stmt.setString(2, townVillageList.getVillageName());
+            stmt.setString(1, townVillageList.getTownName().trim());
+            stmt.setString(2, townVillageList.getVillageName().trim());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -72,6 +72,18 @@ public class TownVillageListDAOImpl implements TownVillageListDAO {
 
     @Override
     public void modifyTownVillageList(TownVillageList townVillageList) {
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(
+                        "UPDATE town_village_list SET town_name = ?, village_name = ?WHERE num = ?")) {
+
+            stmt.setString(1, townVillageList.getTownName().trim());
+            stmt.setString(2, townVillageList.getVillageName().trim());
+            stmt.setInt(3, townVillageList.getNum());
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
 
     }
 
@@ -88,6 +100,26 @@ public class TownVillageListDAOImpl implements TownVillageListDAO {
             throw new RuntimeException(ex);
         }
 
+    }
+
+    @Override
+    public TownVillageList getTownVillageList(int num) {
+        TownVillageList townVillageList = null;
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM town_village_list WHERE num=?")) {
+            stmt.setInt(1, num);
+            ResultSet result;
+            result = stmt.executeQuery();
+            while (result.next()) {
+                townVillageList = toTownVillageList(result);            
+            }
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        
+        return townVillageList;        
     }
 
 }
