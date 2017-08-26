@@ -10,7 +10,7 @@ package cc.yunlin.model;
  * @author sinsnn
  */
 public interface AccountDAO {
-    boolean isUserExisted(Account account);
+    boolean isAccountExisted(Account account);
     void addAccount(Account account);
     Account getAccount(Account account);     
 }

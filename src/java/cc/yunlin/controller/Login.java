@@ -57,8 +57,8 @@ public class Login extends HttpServlet {
         account.setName(username);
         account.setPassword(password);
         
-        UserService userService = (UserService) getServletContext().getAttribute("userService");
-        if (userService.isUserExisted(account)) {
+        AccountService accountService = (AccountService) getServletContext().getAttribute("accountService");
+        if (accountService.isAccountExisted(account)) {
             request.getSession().setAttribute("login", username);
             page = SUCCESS_VIEW;
         }

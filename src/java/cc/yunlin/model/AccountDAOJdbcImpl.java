@@ -24,7 +24,7 @@ public class AccountDAOJdbcImpl implements AccountDAO {
     }
 
     @Override
-    public boolean isUserExisted(Account account) {
+    public boolean isAccountExisted(Account account) {
         Connection conn = null;
         PreparedStatement stmt = null;
         SQLException ex = null;

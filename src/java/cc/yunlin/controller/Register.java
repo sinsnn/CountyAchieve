@@ -6,7 +6,7 @@
 package cc.yunlin.controller;
 
 import cc.yunlin.model.Account;
-import cc.yunlin.model.UserService;
+import cc.yunlin.model.AccountService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class Register extends HttpServlet {
         String password = request.getParameter("password");
         String confirmedPasswd = request.getParameter("confirmedPasswd");
 
-        UserService userService = (UserService) getServletContext().getAttribute("userService");
+        AccountService accountService = (AccountService) getServletContext().getAttribute("accountService");
 
         List<String> errors = new ArrayList<String>();
         if (isInvalidEmail(email)) {
@@ -69,7 +69,7 @@ public class Register extends HttpServlet {
         }
 
         Account account = new Account(username, password, email);
-        if (userService.isUserExisted(account)) {
+        if (accountService.isAccountExisted(account)) {
             errors.add("使用者名稱為空或已存在");
         }
 
@@ -78,7 +78,7 @@ public class Register extends HttpServlet {
             request.setAttribute("errors", errors);
         } else {
             resultPage = SUCCESS_VIEW;
-            userService.add(account);
+            accountService.add(account);
         }
 
         request.getRequestDispatcher(resultPage).forward(request, response);

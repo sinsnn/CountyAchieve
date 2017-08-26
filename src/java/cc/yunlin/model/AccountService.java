@@ -9,18 +9,22 @@ package cc.yunlin.model;
  *
  * @author sinsnn
  */
-public class UserService {
+public class AccountService {
 
 //    private final String USERS = "/Users/sinsnn/desktop/users";
 //    private final String USERS = "C:/Users/sinsnn/Documents/NetBeansProjects/CountyAchieve/users";
     private final AccountDAO accountDAO;
 
-    public UserService(AccountDAO userDAO) {
-        this.accountDAO = userDAO;
+    /**
+     *
+     * @param accountDAO
+     */
+    public AccountService(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
     }
 
-    public boolean isUserExisted(Account account) {
-        return accountDAO.isUserExisted(account);
+    public boolean isAccountExisted(Account account) {
+        return accountDAO.isAccountExisted(account);
     }
 
     public void add(Account account) {

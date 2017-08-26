@@ -30,7 +30,7 @@ public class CountyAchieveListener implements ServletContextListener {
 //下面需新增 model 的一些服務類別
             context.setAttribute("townVillageService", new TownVillageService(
                     new TownVillageListDAOImpl(dataSource)));
-            context.setAttribute("userService", new UserService(
+            context.setAttribute("accountService", new AccountService(
                     new AccountDAOJdbcImpl(dataSource)));
         } catch (NamingException ex) {
             throw new RuntimeException(ex);
